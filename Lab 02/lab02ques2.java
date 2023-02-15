@@ -65,7 +65,7 @@ public class lab02ques2 {
                     int k = -1;
                     for (int j = 0; j <= i; j++) {
                         if (names[j].compareTo(name) == 0) {
-                            System.out.println(name + "exists at index number " + j + "And its deleted.");
+                            System.out.println(name + " exists at index number " + j + " And its deleted.");
                             names[j] = "";
 
                         } else {
