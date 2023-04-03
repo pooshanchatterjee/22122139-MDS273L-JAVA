@@ -6,7 +6,7 @@ Class- MS DS B
 Email- pooshan.chatterjee@msds.christuniversity.in
 
 Description:
-Hello there. This is where i store all my Java codes required for my lab work at university.
+Hello there. This is where i store all my Java codes required for my lab work at Christ University.
 
 25/01/2023
 
