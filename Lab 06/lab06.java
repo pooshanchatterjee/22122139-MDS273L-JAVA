@@ -1,31 +1,43 @@
-import java.io.File;
-
-import java.io.FileNotFoundException;
-
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class lab06 {
     public static void main(String[] args) {
+        // BufferedReader reader = null;
+        String line1 = "";
 
-        String data = "";
-        try {
-            File Obj = new File("text.txt");
-            Scanner sc = new Scanner(Obj);
-            while (sc.hasNextLine()) {
-                data = sc.nextLine();
-                System.out.println(data);
+        try (BufferedReader reader = new BufferedReader(new FileReader("text.txt"));) {
+
+            String line = reader.readLine();
+
+            while (line != null) {
+
+                line1 = line1.concat(line);
+                line = reader.readLine();
             }
-            sc.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error has occurred.");
-            e.printStackTrace();
+
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
-        vowels(data);
+
+        int len = line1.length();
+
+        // } finally {
+        // try {
+        // if (reader != null) {
+        // reader.close();
+        // }
+        // } catch (IOException e) {
+        // System.err.println(e.getMessage());
+        // }
+        // }
+        vowels(line1, len);
+        digit(line1, len);
     }
 
-    static void vowels(String z) {
+    static void vowels(String z, int len) {
 
-        int len = z.length();
         // int c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0;
 
         System.out.println(len);
@@ -59,38 +71,68 @@ public class lab06 {
 
         }
 
-        // Character a = 'a';
-        // Character A = 'A';
-        // Character e = 'e';
-        // Character E = 'E';
-        // Character i = 'i';
-        // Character I = 'I';
-        // Character o = 'o';
-        // Character O = 'O';
-        // Character u = 'u';
-        // Character U = 'U';
+    }
 
-        // for (int j = 0; i < len; i++) {
+    static void digit(String z, int len) {
 
-        // Character c = z.charAt(j);
+        int[] count1 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        // if (c.equals(a) || c.equals(A)) {
-        // c1 = c1 + 1;
-        // } else if (c.equals(e) || c.equals(E)) {
-        // c2 = c2 + 1;
-        // } else if (c.equals(i) || c.equals(I)) {
-        // c3 = c3 + 1;
-        // } else if (c.equals(o) || c.equals(O)) {
-        // c4 = c4 + 1;
-        // } else if (c.equals(u) || c.equals(U)) {
-        // c5 = c5 + 1;
-        // }
+        Character[] digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
-        // }
+        for (int j = 0; j < len; j++) {
 
-        // System.out.println("the vowel count is: ");
-        // System.out.println("[a:" + c1 + " e: " + c2 + " i: " + c3 + " o: " + c4 + "
-        // u: " + c5 + "]");
+            Character c1 = z.charAt(j);
+
+            for (int k = 0; k < 10; k++) {
+
+                Character v = digit[k];
+
+                if (c1.equals(v)) {
+                    count1[k] = count1[k] + 1;
+                }
+
+            }
+
+        }
+
+        System.out.println("The digit count is: ");
+
+        for (int k = 0; k < 10; k++) {
+            System.out.println(digit[k] + " : " + count1[k]);
+
+        }
 
     }
+
+    static void most_repeated_words(String z, int len) {
+
+        int count = 0;
+
+        for (int i = 0; i < len; i++) {
+            Character o = z.charAt(i);
+            if (o.equals(' ')) {
+                count = count + 1;
+            }
+        }
+
+        String[] words = new String[count - 1];
+
+        for (int i = 0; i < len; i++) {
+            String word = "";
+            for (int j = 0; j < len; j++) {
+                Character c = z.charAt(j);
+                if ((!c.equals(' '))) {
+                    String s = Character.toString(c);
+                    word = word.concat(s);
+                } else if (c.equals(' ')) {
+                    break;
+                }
+
+            }
+            words[i] = word;
+
+        }
+
+    }
+
 }
