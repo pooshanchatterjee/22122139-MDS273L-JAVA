@@ -35,9 +35,12 @@ public class lab06 {
         vowels(line1, len);
         digit(line1, len);
 
-        int max_freq = 0;
-        max_freq = most_repeated_words(line1, len);
+        int max_freq = most_repeated_words(line1, len);
         least_repeated_words(line1, len, max_freq);
+
+        int max_char = most_characters(line1, len);
+        least_characters(line1, len, max_char);
+
     }
 
     static void vowels(String z, int len) {
@@ -162,6 +165,65 @@ public class lab06 {
         }
         System.out.println("The least repeated word is: " + min_word);
         System.out.println("Its count is: " + freq1);
+
+    }
+
+    static int most_characters(String z, int len) {
+
+        int freq = 0;
+        char maxc = ' ';
+
+        for (int i = 0; i < len; i++) {
+
+            Character c = z.charAt(i);
+            int count = 1;
+
+            for (int j = (i + 1); j < len; j++) {
+                Character d = z.charAt(j);
+                if (c == d) {
+                    count = count + 1;
+                }
+            }
+
+            if (count > freq) {
+                freq = count;
+                maxc = c;
+
+            }
+        }
+
+        System.out.println("The most repeated character: " + maxc);
+        System.out.println("Its frequency: " + freq);
+        return freq;
+
+    }
+
+    static void least_characters(String z, int len, int max_char) {
+
+        int freq = max_char;
+        char minc = ' ';
+
+        for (int i = 0; i < len; i++) {
+
+            Character c = z.charAt(i);
+            int count = 1;
+
+            for (int j = (i + 1); j < len; j++) {
+                Character d = z.charAt(j);
+                if (c == d) {
+                    count = count + 1;
+                }
+            }
+
+            if (count < freq) {
+                freq = count;
+                minc = c;
+
+            }
+        }
+
+        System.out.println("The least repeated character: " + minc);
+        System.out.println("Its frequency: " + freq);
 
     }
 
