@@ -34,13 +34,14 @@ public class lab06 {
         // }
         vowels(line1, len);
         digit(line1, len);
+        most_repeated_words(line1, len);
     }
 
     static void vowels(String z, int len) {
 
         // int c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0;
 
-        System.out.println(len);
+        // System.out.println(len);
 
         int[] count = { 0, 0, 0, 0, 0 };
 
@@ -106,33 +107,30 @@ public class lab06 {
 
     static void most_repeated_words(String z, int len) {
 
-        int count = 0;
+        String[] words = z.split("\\s+");
+        int p = 0;
 
-        for (int i = 0; i < len; i++) {
-            Character o = z.charAt(i);
-            if (o.equals(' ')) {
-                count = count + 1;
-            }
+        for (int i = 0; i < words.length; i++) {
+            System.out.println(words[i]);
         }
 
-        String[] words = new String[count - 1];
+        int freq1 = 0;
+        String max_word = " ";
 
-        for (int i = 0; i < len; i++) {
-            String word = "";
-            for (int j = 0; j < len; j++) {
-                Character c = z.charAt(j);
-                if ((!c.equals(' '))) {
-                    String s = Character.toString(c);
-                    word = word.concat(s);
-                } else if (c.equals(' ')) {
-                    break;
+        for (int i = 0; i < words.length; i++) {
+            int freq = 0;
+            for (int j = 0; j < words.length; j++) {
+                if (words[i].equals(words[j])) {
+                    freq = freq + 1;
                 }
-
             }
-            words[i] = word;
-
+            if (freq > freq1) {
+                freq1 = freq;
+                max_word = words[i];
+            }
         }
+        System.out.println("The most repeated word is: " + max_word);
+        System.out.println("Its count is: " + freq1);
 
     }
-
 }
