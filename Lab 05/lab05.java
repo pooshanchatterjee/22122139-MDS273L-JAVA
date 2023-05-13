@@ -1,233 +1,114 @@
+
 import java.util.Scanner;
 
 public class lab05 {
-
-    static Scanner sc = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
+    static Student[] students = new Student[100];
+    static int studentCount = 0;
 
     public static void main(String[] args) {
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add a student");
+            System.out.println("2. Search for a student");
+            System.out.println("3. Display all students");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        Student[] ns = new Student[100];
-
-        int k = 0;
-        int choice;
-
-        for (int j = 0;; j++) {
-
-            do {
-                System.out.println("1. Add a student");
-                System.out.println("2. Search for a student");
-                System.out.println("3. Display all students");
-                choice = Integer.parseInt(sc.nextLine());
-
-                switch (choice) {
-                    case 1:
-                        String[] details = add(ns);
-                        ns[k] = new Student(details[0], details[1], details[2], details[3], details[4], details[5]);
-                        k++;
-                        break;
-                    case 2:
-                        search(ns, k);
-                        break;
-                    case 3:
-                        display(ns);
-                        break;
-                    default:
-                        System.out.println("Invalid Choice. Please enter again");
-
-                }
-
-            } while (choice != 1 && choice != 2 && choice != 3);
-
-            Character choice1;
-            Character yes = 'y';
-            Character no = 'n';
-            do {
-                System.out.println("Enter y to continue and n to not continue");
-                choice1 = sc.next().charAt(0);
-                sc.nextLine();
-                if (choice1.equals(yes)) {
-                    continue;
-                } else if (choice1.equals(no)) {
+            switch (choice) {
+                case 1:
+                    addStudent();
                     break;
-                } else {
-                    System.out.println("Invalid Input. Enter again");
-                }
-            } while (choice1 != 'y' && choice1 != 'n');
-
-        }
-
-    }
-
-    static String[] add(Student[] a) {
-
-        String regno;
-        int i = 0;
-        int c = 0;
-
-        System.out.println("Enter Registration Number: ");
-        regno = sc.nextLine();
-
-        c = c + 1;
-        if (c > 1) {
-            for (i = 0; i < 100; i++) {
-                if (regno.equals(a[i].get_regno())) {
-                    System.out.println("Student already exists. Enter again");
-                    add(a);
-                }
-            }
-        }
-
-        System.out.println("Enter name");
-        String name = sc.nextLine();
-
-        // do {
-        // System.out.println("Enter Registration Number");
-        // regno = sc.nextLine();
-        // for (i = 0; i < 100; i++) {
-        // if (a[i] != null) {
-        // if (regno.equals(a[i].get_regno())) {
-        // System.out.println("Registration Number already exists. Enter again.");
-        // }
-        // } else {
-        // break;
-        // }
-
-        // }
-        // } while (regno.equals(a[i].get_regno()));
-
-        System.out.println("Enter e-mail");
-        String email = sc.nextLine();
-        System.out.println("Enter Phone Number");
-        String phone = sc.nextLine();
-        System.out.println("Enter Class");
-        String Class = sc.nextLine();
-        System.out.println("Enter department");
-        String dept = sc.nextLine();
-
-        String[] details = { regno, name, email, phone, Class, dept };
-
-        return details;
-
-    }
-
-    static String[] add(Student[] a, String name, String regno) {
-
-        int i;
-        do {
-            System.out.println("Enter Registration Number");
-            regno = sc.nextLine();
-            for (i = 0; i < 100; i++) {
-                if (a[i] != null) {
-                    if (regno.equals(a[i].get_regno())) {
-                        System.out.println("Registration Number already exists. Enter again.");
-                    }
-                } else {
+                case 2:
+                    searchStudent();
                     break;
-                }
-
+                case 3:
+                    displayAllStudents();
+                    break;
+                case 4:
+                    System.out.println("Exiting program...");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+                    break;
             }
-        } while (regno.equals(a[i].get_regno()));
-
-        System.out.println("Enter e-mail");
-        String email = sc.nextLine();
-        System.out.println("Enter Phone Number");
-        String phone = sc.nextLine();
-        System.out.println("Enter Class");
-        String Class = sc.nextLine();
-        System.out.println("Enter department");
-        String dept = sc.nextLine();
-        String[] details = { regno, name, email, phone, Class, dept };
-
-        return details;
-
-    }
-
-    static void display(Student[] ns) {
-        for (int i = 0;; i++) {
-            if (ns[i] == null) {
-                break;
-            }
-            System.out.println("Student " + (i + 1));
-            System.out.println("");
-            ns[i].printdetails();
-            System.out.println("");
-            System.out.println("");
         }
     }
 
-    static void search(Student[] a, int l) {
+    public static void addStudent() {
+        System.out.print("Enter Reg. No.: ");
+        String regNo = scanner.nextLine();
+        System.out.print("Enter Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Enter Phone: ");
+        String phone = scanner.nextLine();
+        System.out.print("Enter Class: ");
+        String className = scanner.nextLine();
+        System.out.print("Enter Department: ");
+        String department = scanner.nextLine();
 
-        System.out.println("Enter Name of the student you want to search");
-        String sname = sc.nextLine();
-        System.out.println("Enter Registration Number of the student");
-        String sreg = sc.nextLine();
-        for (int i = 0; i <= l; i++) {
-            if (sname.equals(a[i].get_name()) && sreg.equals(a[i].get_regno())) {
-                a[i].printdetails();
-            } else {
-                Character y = 'y';
-                Character n = 'n';
-                Character yn;
-                do {
-                    System.out.println("No such record exists.");
-                    System.out.println("Do you want to add this to the record");
-                    yn = sc.nextLine().charAt(0);
-                    if (yn.equals(y)) {
-                        add(a, sname, sreg);
-                    } else if (yn.equals(n)) {
-                        System.out.println("Okay. Thank you.");
-                        break;
-                    } else {
-                        System.out.println("Invalid Input. Try again");
-                    }
+        students[studentCount] = new Student(regNo, name, email, phone, className, department);
+        studentCount++;
 
-                } while (yn != 'y' && yn != 'n');
-                break;
+        System.out.println("Student added successfully!");
+    }
+
+    public static void searchStudent() {
+        System.out.print("Enter Reg. No. to search: ");
+        String regNo = scanner.nextLine();
+
+        for (int i = 0; i < studentCount; i++) {
+            if (students[i].regNo.equals(regNo)) {
+                students[i].printDetails();
+                return;
             }
         }
 
+        System.out.println("No student found with Reg. No.: " + regNo);
     }
 
+    public static void displayAllStudents() {
+        if (studentCount == 0) {
+            System.out.println("No students to display!");
+            return;
+        }
+
+        System.out.println("List of students:");
+        for (int i = 0; i < studentCount; i++) {
+            System.out.println((i + 1) + ".");
+            students[i].printDetails();
+        }
+    }
 }
 
 class Student {
-
-    String regno;
+    String regNo;
     String name;
     String email;
     String phone;
-    String Class;
-    String dept;
+    String className;
+    String department;
 
-    Student() {
-
-    }
-
-    Student(String regno, String name, String email, String phone, String Class, String dept) {
-        this.regno = regno;
+    public Student(String regNo, String name, String email, String phone, String className, String department) {
+        this.regNo = regNo;
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.Class = Class;
-        this.dept = dept;
+        this.className = className;
+        this.department = department;
     }
 
-    String get_name() {
-        return this.name;
+    public void printDetails() {
+        System.out.println("Reg. No.: " + regNo);
+        System.out.println("Name: " + name);
+        System.out.println("Email: " + email);
+        System.out.println("Phone: " + phone);
+        System.out.println("Class: " + className);
+        System.out.println("Department: " + department);
     }
-
-    String get_regno() {
-        return this.regno;
-    }
-
-    void printdetails() {
-        System.out.println("Name: " + this.name);
-        System.out.println("Registration Number: " + this.regno);
-        System.out.println("Enail: " + this.email);
-        System.out.println("Phone: " + this.phone);
-        System.out.println("Class: " + this.Class);
-        System.out.println("Department: " + this.dept);
-        System.out.println(" ");
-    }
-
 }

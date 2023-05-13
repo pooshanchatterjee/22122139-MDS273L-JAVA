@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
-public class lab02ques2 {
+public class Lab02ques2 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int option;
         String name = "";
         String temp = "";
-        int i;
+        int i = -1;
         String[] names = new String[1024];
-        i = -1;
+
         do {
             System.out.println("1. Enter a name");
             System.out.println("2. Search for a name");
@@ -20,25 +20,22 @@ public class lab02ques2 {
 
             switch (option) {
                 case 1:
-                    i = i + 1;
+                    i++;
                     System.out.print("Enter a name: ");
                     name = scan.next();
 
                     for (int j = 0; j <= i; j++) {
-
                         temp = names[j];
-                        if (i != 0 && temp == name) {
+                        if (i != 0 && temp.equals(name)) {
                             System.out.println(name + " already exists in the array.");
-                            i = i - 1;
+                            i--;
                             break;
-                        }
-
-                        else {
+                        } else {
                             names[i] = name;
                             break;
                         }
                     }
-                    System.out.println("");
+                    System.out.println();
                     break;
 
                 case 2:
@@ -46,16 +43,16 @@ public class lab02ques2 {
                     System.out.print("Enter the name: ");
                     name = scan.next();
                     for (int j = 0; j <= i; j++) {
-                        if (names[j].compareTo(name) == 0) {
+                        if (names[j].equals(name)) {
                             System.out.println(name + " exists at index number " + j);
                             ans = "yes";
                             break;
                         }
                     }
-                    if (ans == "no") {
+                    if (ans.equals("no")) {
                         System.out.println(name + " does not exist.");
                     }
-                    System.out.println("");
+                    System.out.println();
                     break;
 
                 case 3:
@@ -64,25 +61,23 @@ public class lab02ques2 {
                     String[] temp_array = new String[1024];
                     int k = -1;
                     for (int j = 0; j <= i; j++) {
-                        if (names[j].compareTo(name) == 0) {
-                            System.out.println(name + " exists at index number " + j + " And its deleted.");
-                            names[j] = "";
-
+                        if (names[j].equals(name)) {
+                            System.out.println(name + " exists at index number " + j + " and is deleted.");
                         } else {
-                            k = k + 1;
+                            k++;
                             temp_array[k] = names[j];
                         }
-                        names = temp_array;
                     }
-
-                    System.out.println("");
+                    names = temp_array;
+                    i = k;
+                    System.out.println();
                     break;
 
                 case 4:
                     for (int j = 0; j <= i; j++) {
                         System.out.println("[" + j + "]: " + names[j]);
                     }
-                    System.out.println("");
+                    System.out.println();
                     break;
 
             }
