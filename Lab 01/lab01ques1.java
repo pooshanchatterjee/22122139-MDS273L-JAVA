@@ -8,6 +8,7 @@ class lab01ques1 {
         char gender;
         boolean married;
         float salary;
+        String region = "";
 
         String gen = " ";
 
@@ -25,12 +26,6 @@ class lab01ques1 {
         System.out.println("Enter age: ");
         age = Integer.parseInt(scan.nextLine());
 
-        // System.out.println("Name: " + name + "\nAge: " + age + "\nGender: " + gen +
-        // "\nMarried? " + married
-        // + "\nSalary: " + salary);
-
-        // Second part
-
         String state;
 
         System.out.println("Enter you state: ");
@@ -47,73 +42,81 @@ class lab01ques1 {
 
         switch (state) {
             case "Chandigarh": {
-                System.out.println("Region : North");
+                region = "North";
                 break;
             }
 
             case "Delhi": {
-                System.out.println("Region : North");
+                region = "North";
                 break;
             }
 
             case "Haryana": {
-                System.out.println("Region : North");
+                region = "North";
                 break;
             }
             case "Jammu kashmir": {
-                System.out.println("Region : North");
+                region = "North";
                 break;
             }
             case "Karnataka": {
-                System.out.println("Region : South");
+                region = "South";
                 break;
             }
             case "Kerala": {
-                System.out.println("Region : South");
+                region = "South";
                 break;
             }
             case "Andhra Pradesh": {
-                System.out.println("Region : South");
+                region = "South";
                 break;
             }
             case "Telangana": {
-                System.out.println("Region : South");
+                region = "South";
                 break;
             }
             case "Arunachal Pradesh": {
-                System.out.println("Region : East");
+                region = "South";
                 break;
             }
             case "Mizoram": {
-                System.out.println("Region : East");
+                region = "East";
                 break;
             }
             case "Odisha": {
-                System.out.println("Region : East");
+                region = "East";
                 break;
             }
             case "Jharkhand": {
-                System.out.println("Region : East ");
+                region = "East";
                 break;
             }
             case "AndhraPradesh": {
-                System.out.println("Region : East ");
+                region = "East";
                 break;
             }
             case "Bihar": {
-                System.out.println("Region : East ");
+                region = "East";
                 break;
 
             }
             case "Nagaland": {
-                System.out.println("Region : East ");
+                region = "East";
                 break;
 
             }
             case "Assam": {
-                System.out.println("Region : East ");
+                region = "East";
                 break;
             }
         }
+
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Gender: " + gen);
+        System.out.println("Married: " + married);
+        System.out.println("Salary: " + salary);
+        System.out.println("The student is from region " + region);
+
     }
 }

@@ -7,7 +7,7 @@ public class lab06 {
         // BufferedReader reader = null;
         String line1 = "";
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("text.txt"));) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("text.txt"))) {
 
             String line = reader.readLine();
 
